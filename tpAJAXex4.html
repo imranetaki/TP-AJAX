@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Load Users</title>
+</head>
+<body>
+    <h1>Load Users with AJAX</h1>
+    <button id="loadUsers">Load Users</button>
+    <div id="users"></div>
+
+    <script>
+        document.getElementById('loadUsers').addEventListener('click', function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'users.json', true);
+
+            xhr.onload = function() {
+                if (this.status === 200) {
+                    var users = JSON.parse(this.responseText);
+                    var output = '';
+
+                    users.forEach(function(user) {
+                        output += '<div>' +
+                                    '<h3>' + user.name + '</h3>' +
+                                    '<p>Email: ' + user.email + '</p>' +
+                                  '</div>';
+                    });
+
+                    document.getElementById('users').innerHTML = output;
+                }
+            };
+
+            xhr.send();
+        });
+    </script>
+</body>
+</html>

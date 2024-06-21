@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Update with AJAX</title>
+</head>
+<body>
+    <h1>Current Time</h1>
+    <div id="time"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function updateTime() {
+                $.ajax({
+                    url: 'time.php',
+                    method: 'GET',
+                    success: function(data) {
+                        $('#time').text(data);
+                    },
+                    error: function(error) {
+                        console.error('Error fetching time:', error);
+                    }
+                });
+            }
+
+            setInterval(updateTime, 1000);
+        });
+    </script>
+</body>
+</html>

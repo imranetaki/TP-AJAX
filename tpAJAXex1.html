@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Content Loading</title>
+</head>
+<body>
+    <button id="loadContent">Load Content</button>
+    <div id="content"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#loadContent').on('click', function() {
+                $.ajax({
+                    url: 'content.html',
+                    method: 'GET',
+                    success: function(data) {
+                        $('#content').html(data);
+                    },
+                    error: function(error) {
+                        console.error('Error loading content:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
